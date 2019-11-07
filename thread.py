@@ -16,6 +16,8 @@ class Thread(threading.Thread):
     def run(self):
         while True:
             try:
+                # Try to get a message from the message queue,
+                # do nothing if the queue is empty
                 self.on_message(self.message_queue.get_nowait())
             except queue.Empty:
                 pass
